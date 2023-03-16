@@ -22,5 +22,6 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'react/prefer-stateless-function': 0,
   },
 };
