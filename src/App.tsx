@@ -1,22 +1,41 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import MainPage from './pages/main/main';
+import Header from './components/header/header';
+import MainPage from './pages/main/mainPage';
 import About from './pages/about/about';
 import NotFound from './pages/notFound/notFound';
 
-function App() {
-  return (
-    <div>
-      <h1>RSS React Week1</h1>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
-  );
+interface IAppState {
+  title: string;
+}
+
+class App extends React.Component<{}, IAppState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = { title: '' };
+    this.changeTitle = this.changeTitle.bind(this);
+  }
+
+  changeTitle() {
+    let path = window.location.pathname.slice(1);
+    path = path === '' ? 'main' : path;
+    this.setState({ title: path });
+  }
+
+  render() {
+    const { title } = this.state;
+    return (
+      <div>
+        <Header title={title} />
+        <Routes>
+          <Route path="/" element={<MainPage changeTitle={this.changeTitle} />} />
+          <Route path="/about" element={<About changeTitle={this.changeTitle} />} />
+          <Route path="*" element={<NotFound changeTitle={this.changeTitle} />} />
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;

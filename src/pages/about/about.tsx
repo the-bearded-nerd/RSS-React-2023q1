@@ -1,7 +1,16 @@
 import React from 'react';
 
-export default class About extends React.Component {
+interface IAboutPage {
+  changeTitle(): void;
+}
+
+export default class About extends React.Component<IAboutPage, {}> {
+  componentDidMount(): void {
+    const { changeTitle } = this.props;
+    changeTitle();
+  }
+
   render() {
-    return <h2>This is About us page</h2>;
+    return <h2>About page content</h2>;
   }
 }

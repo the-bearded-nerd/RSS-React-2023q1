@@ -1,16 +1,16 @@
 import React from 'react';
 
-interface INotFoundPage {
+interface IMainPage {
   changeTitle(): void;
 }
 
-export default class NotFound extends React.Component<INotFoundPage, {}> {
+export default class MainPage extends React.Component<IMainPage, {}> {
   componentDidMount(): void {
     const { changeTitle } = this.props;
     changeTitle();
   }
 
   render() {
-    return <h2>404. Page not found =(</h2>;
+    return <h2>Main page content</h2>;
   }
 }
