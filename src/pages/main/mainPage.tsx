@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SearchBar from '../../components/searchBar/searchBar';
+
 interface IMainPage {
   changeTitle(): void;
 }
@@ -11,6 +13,11 @@ export default class MainPage extends React.Component<IMainPage, {}> {
   }
 
   render() {
-    return <h2>Main page content</h2>;
+    return (
+      <div>
+        <h2>Main page content</h2>
+        <SearchBar />
+      </div>
+    );
   }
 }
