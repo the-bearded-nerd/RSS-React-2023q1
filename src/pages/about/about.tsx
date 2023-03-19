@@ -4,7 +4,7 @@ interface IAboutPage {
   changeTitle(): void;
 }
 
-export default class About extends React.Component<IAboutPage, {}> {
+export default class About extends React.Component<IAboutPage, never> {
   componentDidMount(): void {
     const { changeTitle } = this.props;
     changeTitle();

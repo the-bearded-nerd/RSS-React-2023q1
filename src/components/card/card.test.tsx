@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import Card from './card';
+import { Card } from './card';
 
 describe('Card', () => {
   const someTestUser = {
@@ -16,7 +16,7 @@ describe('Card', () => {
   it('Renders card with img', async () => {
     render(
       <MemoryRouter>
-        <Card {...someTestUser} />
+        <Card cardData={someTestUser} />
       </MemoryRouter>
     );
     const img = screen.getByRole('img');

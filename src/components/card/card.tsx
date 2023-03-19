@@ -4,7 +4,7 @@ import getUserImg from '../../utils/userpic';
 
 import './card.styles.css';
 
-export interface ICardProps {
+export interface ICard {
   id: number;
   name: string;
   username: string;
@@ -13,13 +13,23 @@ export interface ICardProps {
   website: string;
 }
 
-export default class Card extends React.Component<ICardProps, {}> {
+export interface ICardProps {
+  cardData: ICard;
+}
+
+export class Card extends React.Component<ICardProps, unknown> {
+  constructor(props: ICardProps) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
-    const { username, name, email, phone, website } = this.props;
+    const { cardData } = this.props;
+    const { username, name, email, phone, website } = cardData;
     const userImg = getUserImg(username);
     return (
-      <div className="card" role="card">
-        <img className="card-img" src={userImg} alt={`${username} photo`} />
+      <div className="card" role="listitem">
+        <img className="card-img" src={userImg} alt={`${username}`} />
         <p className="card-name">{name}</p>
         <p className="card-username">{username}</p>
         <a href={`mailto:${email}`} className="card-email">

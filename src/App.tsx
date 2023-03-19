@@ -10,8 +10,8 @@ interface IAppState {
   title: string;
 }
 
-class App extends React.Component<{}, IAppState> {
-  constructor(props: {}) {
+class App extends React.Component<unknown, IAppState> {
+  constructor(props: unknown) {
     super(props);
     this.state = { title: '' };
     this.changeTitle = this.changeTitle.bind(this);

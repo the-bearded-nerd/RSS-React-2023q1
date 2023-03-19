@@ -12,7 +12,7 @@ describe('CardList', () => {
         <CardList userData={userData} />
       </MemoryRouter>
     );
-    const cards = screen.getAllByRole('card');
+    const cards = screen.getAllByRole('listitem');
     expect(cards.length).toBe(10);
   });
 });

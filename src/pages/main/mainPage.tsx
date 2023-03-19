@@ -10,7 +10,7 @@ interface IMainPage {
   changeTitle(): void;
 }
 
-export default class MainPage extends React.Component<IMainPage, {}> {
+export default class MainPage extends React.Component<IMainPage, never> {
   componentDidMount(): void {
     const { changeTitle } = this.props;
     changeTitle();

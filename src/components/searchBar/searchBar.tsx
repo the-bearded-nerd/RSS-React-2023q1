@@ -4,11 +4,11 @@ interface ISearchBarState {
   searchString: string;
 }
 
-export default class SearchBar extends React.Component<{}, ISearchBarState> {
-  constructor(props: {}) {
+export default class SearchBar extends React.Component<unknown, ISearchBarState> {
+  constructor(props: unknown) {
     super(props);
     const savedSearchString = localStorage.getItem('savedSearchString');
-    this.state = { searchString: savedSearchString ? savedSearchString : '' };
+    this.state = { searchString: savedSearchString || '' };
     this.saveSearchString = this.saveSearchString.bind(this);
     window.addEventListener('beforeunload', this.saveSearchString);
   }

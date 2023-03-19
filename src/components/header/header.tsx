@@ -7,7 +7,12 @@ interface IHeaderProps {
   title: string;
 }
 
-export default class Header extends React.Component<IHeaderProps, {}> {
+export default class Header extends React.Component<IHeaderProps, unknown> {
+  constructor(props: IHeaderProps) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     const { title } = this.props;
     return (

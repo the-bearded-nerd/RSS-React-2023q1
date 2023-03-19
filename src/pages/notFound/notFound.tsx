@@ -4,7 +4,7 @@ interface INotFoundPage {
   changeTitle(): void;
 }
 
-export default class NotFound extends React.Component<INotFoundPage, {}> {
+export default class NotFound extends React.Component<INotFoundPage, never> {
   componentDidMount(): void {
     const { changeTitle } = this.props;
     changeTitle();
