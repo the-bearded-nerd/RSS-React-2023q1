@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
@@ -14,6 +13,10 @@ export default defineConfig({
     setupFiles: './src/setupTests.ts',
     coverage: {
       provider: 'istanbul', // or 'c8'
+      all: true,
+      enabled: true,
+      reporter: ['text'],
+      include: ['**/*.{jsx,tsx}'],
     },
   },
 });

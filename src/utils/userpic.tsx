@@ -1,3 +1,3 @@
 export default function getUserImg(userName: string): string {
-  return `https://robohash.org/${userName}.png`;
+  return `https://robohash.org/${userName}.png?set=set4`;
 }

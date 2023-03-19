@@ -5,7 +5,6 @@ import Header from './components/header/header';
 import MainPage from './pages/main/mainPage';
 import About from './pages/about/about';
 import NotFound from './pages/notFound/notFound';
-import CardList from './components/card-list/card-list';
 
 interface IAppState {
   title: string;
@@ -27,9 +26,8 @@ class App extends React.Component<{}, IAppState> {
   render() {
     const { title } = this.state;
     return (
-      <div>
+      <div className="app-container">
         <Header title={title} />
-        <CardList />
         <Routes>
           <Route path="/" element={<MainPage changeTitle={this.changeTitle} />} />
           <Route path="/about" element={<About changeTitle={this.changeTitle} />} />
