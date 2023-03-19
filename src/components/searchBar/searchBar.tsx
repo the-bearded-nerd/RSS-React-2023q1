@@ -27,11 +27,15 @@ export default class SearchBar extends React.Component<unknown, ISearchBarState>
     localStorage.setItem('savedSearchString', searchString);
   }
 
+  onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   render() {
     const { searchString } = this.state;
     return (
       <div className="search-bar">
-        <form className="form">
+        <form className="form" onSubmit={this.onSubmit}>
           <div className="field">
             <input
               type="text"
@@ -40,6 +44,7 @@ export default class SearchBar extends React.Component<unknown, ISearchBarState>
               value={searchString}
               onChange={this.onInputChange}
             />
+            <input type="submit" value="Search" />
           </div>
         </form>
       </div>
