@@ -5,8 +5,7 @@ import Header from './components/header/header';
 import MainPage from './pages/main/mainPage';
 import About from './pages/about/about';
 import NotFound from './pages/notFound/notFound';
-import usersData from './usersdata.json';
-import Card from './components/card/card';
+import CardList from './components/card-list/card-list';
 
 interface IAppState {
   title: string;
@@ -17,7 +16,6 @@ class App extends React.Component<{}, IAppState> {
     super(props);
     this.state = { title: '' };
     this.changeTitle = this.changeTitle.bind(this);
-    console.log(usersData);
   }
 
   changeTitle() {
@@ -31,6 +29,7 @@ class App extends React.Component<{}, IAppState> {
     return (
       <div>
         <Header title={title} />
+        <CardList />
         <Routes>
           <Route path="/" element={<MainPage changeTitle={this.changeTitle} />} />
           <Route path="/about" element={<About changeTitle={this.changeTitle} />} />

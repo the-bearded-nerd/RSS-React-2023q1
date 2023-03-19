@@ -2,7 +2,7 @@ import React from 'react';
 
 import getUserImg from '../../utils/userpic';
 
-interface ICardProps {
+export interface ICardProps {
   id: number;
   name: string;
   username: string;
