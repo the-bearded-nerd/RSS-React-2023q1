@@ -5,6 +5,8 @@ import Header from './components/header/header';
 import MainPage from './pages/main/mainPage';
 import About from './pages/about/about';
 import NotFound from './pages/notFound/notFound';
+import usersData from './usersdata.json';
+import Card from './components/card/card';
 
 interface IAppState {
   title: string;
@@ -15,6 +17,7 @@ class App extends React.Component<{}, IAppState> {
     super(props);
     this.state = { title: '' };
     this.changeTitle = this.changeTitle.bind(this);
+    console.log(usersData);
   }
 
   changeTitle() {
