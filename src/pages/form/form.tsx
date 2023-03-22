@@ -14,7 +14,9 @@ export default class Form extends React.Component<IFormPageProps> {
 
   selectRef: React.RefObject<HTMLSelectElement>;
 
-  switchRef: React.RefObject<HTMLDivElement>;
+  switchMaleRef: React.RefObject<HTMLInputElement>;
+
+  switchFemaleRef: React.RefObject<HTMLInputElement>;
 
   fileRef: React.RefObject<HTMLInputElement>;
 
@@ -26,7 +28,8 @@ export default class Form extends React.Component<IFormPageProps> {
     this.textRef = React.createRef<HTMLInputElement>();
     this.dateRef = React.createRef<HTMLInputElement>();
     this.selectRef = React.createRef<HTMLSelectElement>();
-    this.switchRef = React.createRef<HTMLDivElement>();
+    this.switchMaleRef = React.createRef<HTMLInputElement>();
+    this.switchFemaleRef = React.createRef<HTMLInputElement>();
     this.fileRef = React.createRef<HTMLInputElement>();
     this.checkboxRef = React.createRef<HTMLInputElement>();
   }
@@ -36,9 +39,10 @@ export default class Form extends React.Component<IFormPageProps> {
     console.log(this.textRef);
     console.log(this.dateRef);
     console.log(this.selectRef);
-    console.log(this.switchRef);
     console.log(this.fileRef);
     console.log(this.checkboxRef);
+    console.log(this.switchFemaleRef);
+    console.log(this.switchMaleRef);
   }
 
   render() {
@@ -63,10 +67,22 @@ export default class Form extends React.Component<IFormPageProps> {
             </select>
           </label>
           <p>Pick gender:</p>
-          <div className="switch-field" ref={this.switchRef}>
-            <input type="radio" id="radio-one" name="switcher" value="1" />
+          <div className="switch-field">
+            <input
+              type="radio"
+              id="radio-one"
+              name="switcher"
+              value="male"
+              ref={this.switchMaleRef}
+            />
             <label htmlFor="radio-one">Male</label>
-            <input type="radio" id="radio-two" name="switcher" value="maybe" />
+            <input
+              type="radio"
+              id="radio-two"
+              name="switcher"
+              value="female"
+              ref={this.switchFemaleRef}
+            />
             <label htmlFor="radio-two">Female</label>
           </div>
           <label htmlFor="file-input">Add picture</label>
