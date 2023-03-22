@@ -35,6 +35,14 @@ export default class Header extends React.Component<IHeaderProps, unknown> {
           >
             About
           </NavLink>
+          <NavLink
+            to="/form"
+            style={({ isActive }) => ({
+              color: isActive ? 'greenyellow' : 'blue',
+            })}
+          >
+            Form
+          </NavLink>
         </nav>
       </header>
     );
