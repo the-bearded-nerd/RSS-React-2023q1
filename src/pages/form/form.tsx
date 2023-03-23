@@ -2,6 +2,7 @@
 import React from 'react';
 
 import ErrorMessageWrapper from '../../components/error-message-wrapper/error-message-wrapper';
+import validateForm from '../../utils/validateFrom';
 
 import './form.styles.css';
 
@@ -28,42 +29,30 @@ const INITIAL_STATE = {
 };
 
 export default class Form extends React.Component<IFormPageProps, IFormPageState> {
-  textRef: React.RefObject<HTMLInputElement>;
+  textRef = React.createRef<HTMLInputElement>();
 
-  dateRef: React.RefObject<HTMLInputElement>;
+  dateRef = React.createRef<HTMLInputElement>();
 
-  selectRef: React.RefObject<HTMLSelectElement>;
+  selectRef = React.createRef<HTMLSelectElement>();
 
-  switchMaleRef: React.RefObject<HTMLInputElement>;
+  switchMaleRef = React.createRef<HTMLInputElement>();
 
-  switchFemaleRef: React.RefObject<HTMLInputElement>;
+  switchFemaleRef = React.createRef<HTMLInputElement>();
 
-  fileRef: React.RefObject<HTMLInputElement>;
+  fileRef = React.createRef<HTMLInputElement>();
 
-  checkboxRef: React.RefObject<HTMLInputElement>;
+  checkboxRef = React.createRef<HTMLInputElement>();
 
   constructor(props: IFormPageProps) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.textRef = React.createRef<HTMLInputElement>();
-    this.dateRef = React.createRef<HTMLInputElement>();
-    this.selectRef = React.createRef<HTMLSelectElement>();
-    this.switchMaleRef = React.createRef<HTMLInputElement>();
-    this.switchFemaleRef = React.createRef<HTMLInputElement>();
-    this.fileRef = React.createRef<HTMLInputElement>();
-    this.checkboxRef = React.createRef<HTMLInputElement>();
     this.state = INITIAL_STATE;
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(this.textRef);
-    console.log(this.dateRef);
-    console.log(this.selectRef);
-    console.log(this.fileRef);
-    console.log(this.checkboxRef);
-    console.log(this.switchFemaleRef);
-    console.log(this.switchMaleRef);
+    const validateResults = validateForm();
+    this.setState(validateResults.errorMsgs);
   }
 
   render() {
