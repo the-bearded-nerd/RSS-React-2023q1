@@ -3,7 +3,7 @@ const INITIAL_STATE = {
   dateErrMsg: '2',
   selectErrMsg: '3',
   switchErrMsg: '4',
-  fileErrMsg: '5',
+  fileErrMsg: '',
   checkboxErrMsg: '6',
 };
 
@@ -57,7 +57,14 @@ const validateForm = (validateData: IValidateFromProps) => {
     selectErrMsg: validateSelect(validateData.selectValue),
     dateErrMsg: validateDate(validateData.date),
   };
-  return { valid: 'true', errorMsgs };
+  const valid =
+    !errorMsgs.checkboxErrMsg &&
+    !errorMsgs.dateErrMsg &&
+    !errorMsgs.fileErrMsg &&
+    !errorMsgs.selectErrMsg &&
+    !errorMsgs.switchErrMsg &&
+    !errorMsgs.textErrMsg;
+  return { valid, errorMsgs };
 };
 
 export default validateForm;
