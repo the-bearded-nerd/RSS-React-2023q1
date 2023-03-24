@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
-import ErrorMessageWrapper from '../../components/error-message-wrapper/error-message-wrapper';
 import validateForm from '../../utils/validateFrom';
-
-import './form.styles.css';
+import FullnameInput from '../../components/fullnameInput/fullnameInput';
+import DateInput from '../../components/dateInput/dateInput';
+import Select from '../../components/select/select';
+import GenderPicker from '../../components/genderPicker/genderPicker';
+import FileInput from '../../components/fileInput/fileInput';
+import ConsentInput from '../../components/consentInput/consentInput';
 
 interface IFormPageProps {
   changeTitle(): void;
@@ -51,7 +54,15 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const validateResults = validateForm();
+    const validationData = {
+      text: this.textRef.current?.value,
+      male: this.switchMaleRef.current?.checked,
+      female: this.switchFemaleRef.current?.checked,
+      checkbox: this.checkboxRef.current?.checked,
+      selectValue: this.selectRef.current?.value,
+      date: this.dateRef.current?.value,
+    };
+    const validateResults = validateForm(validationData);
     this.setState(validateResults.errorMsgs);
   }
 
@@ -62,70 +73,16 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
       <div className="form-container">
         <h2>This is the form page</h2>
         <form className="form" onSubmit={this.onSubmit}>
-          <ErrorMessageWrapper message={textErrMsg}>
-            <label htmlFor="text-input">
-              Enter full name:{' '}
-              <input
-                type="text"
-                placeholder="Somebody Someone"
-                id="text-input"
-                ref={this.textRef}
-              />
-            </label>
-          </ErrorMessageWrapper>
-          <ErrorMessageWrapper message={dateErrMsg}>
-            <label htmlFor="date-input">
-              Birthday: <input type="date" id="date-input" name="date-input" ref={this.dateRef} />
-            </label>
-          </ErrorMessageWrapper>
-          <ErrorMessageWrapper message={selectErrMsg}>
-            <label htmlFor="select-input">
-              Choose an option:{' '}
-              <select name="select-input" id="select-input" ref={this.selectRef}>
-                <option value="">--Please choose an option--</option>
-                <option value="option-1">Option 1</option>
-                <option value="option-2">Option 2</option>
-                <option value="option-3">Option 3</option>
-              </select>
-            </label>
-          </ErrorMessageWrapper>
-          <ErrorMessageWrapper message={switchErrMsg}>
-            <p>Pick gender:</p>
-            <div className="switch-field">
-              <input
-                type="radio"
-                id="radio-one"
-                name="switcher"
-                value="male"
-                ref={this.switchMaleRef}
-              />
-              <label htmlFor="radio-one">Male</label>
-              <input
-                type="radio"
-                id="radio-two"
-                name="switcher"
-                value="female"
-                ref={this.switchFemaleRef}
-              />
-              <label htmlFor="radio-two">Female</label>
-            </div>
-          </ErrorMessageWrapper>
-          <ErrorMessageWrapper message={fileErrMsg}>
-            <label htmlFor="file-input">Add picture</label>
-            <input type="file" id="file-input" ref={this.fileRef} />
-          </ErrorMessageWrapper>
-          <ErrorMessageWrapper message={checkboxErrMsg}>
-            <label htmlFor="checkbox-input">
-              I consent to my personal data:
-              <input
-                type="checkbox"
-                name="checkbox-input"
-                id="checkbox-input"
-                ref={this.checkboxRef}
-              />
-            </label>
-          </ErrorMessageWrapper>
-
+          <FullnameInput localRef={this.textRef} message={textErrMsg} />
+          <DateInput localRef={this.dateRef} dateErrMsg={dateErrMsg} />
+          <Select localRef={this.selectRef} selectErrMsg={selectErrMsg} />
+          <GenderPicker
+            maleRef={this.switchMaleRef}
+            femaleRef={this.switchFemaleRef}
+            switchErrMsg={switchErrMsg}
+          />
+          <FileInput localRef={this.fileRef} fileErrMsg={fileErrMsg} />
+          <ConsentInput localRef={this.checkboxRef} checkboxErrMsg={checkboxErrMsg} />
           <input type="submit" value="Submit" />
         </form>
       </div>
