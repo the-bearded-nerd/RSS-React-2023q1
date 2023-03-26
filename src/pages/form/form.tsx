@@ -61,6 +61,7 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
       checkbox: this.checkboxRef.current?.checked,
       selectValue: this.selectRef.current?.value,
       date: this.dateRef.current?.value,
+      files: this.fileRef.current?.files,
     };
     const validateResults = validateForm(validationData);
     this.setState(validateResults.errorMsgs);

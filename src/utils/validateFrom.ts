@@ -14,6 +14,7 @@ interface IValidateFromProps {
   checkbox: boolean | undefined;
   selectValue: string | undefined;
   date: string | undefined;
+  files: FileList | undefined | null;
 }
 
 const validateText = (text: string | undefined) => {
@@ -48,6 +49,12 @@ const validateDate = (date: string | undefined) => {
   return '';
 };
 
+const validateFile = (files: FileList | undefined | null) => {
+  if (!files || files.length === 0) return 'Must pick file';
+  if (!files[0].type.startsWith('image')) return 'Must pick image';
+  return '';
+};
+
 const validateForm = (validateData: IValidateFromProps) => {
   const errorMsgs = {
     ...INITIAL_STATE,
@@ -56,6 +63,7 @@ const validateForm = (validateData: IValidateFromProps) => {
     checkboxErrMsg: validateConsent(validateData.checkbox),
     selectErrMsg: validateSelect(validateData.selectValue),
     dateErrMsg: validateDate(validateData.date),
+    fileErrMsg: validateFile(validateData.files),
   };
   const valid =
     !errorMsgs.checkboxErrMsg &&
