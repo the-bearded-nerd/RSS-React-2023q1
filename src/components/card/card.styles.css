@@ -1,0 +1,24 @@
+.card {
+  transition: box-shadow .2s;
+  padding: 16px;
+  width: 220px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2px;
+  border: 3px solid lightslategray;
+  border-radius: 8px;
+}
+
+.card:hover {
+  box-shadow: 0 0 16px rgba(33,33,33,.4); 
+}
+
+.card-img{
+  width: 180px;
+}
+
+.card-name, .card-username, .card-email, .card-phone, .card-website, .card-general{
+  padding: 2px;
+  margin: 0;
+}
