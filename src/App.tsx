@@ -5,7 +5,7 @@ import Header from './components/header/header';
 import MainPage from './pages/main/mainPage';
 import About from './pages/about/about';
 import NotFound from './pages/notFound/notFound';
-import Form from './pages/form/form';
+import Form from './pages/formPage/formPage';
 
 interface IAppState {
   title: string;

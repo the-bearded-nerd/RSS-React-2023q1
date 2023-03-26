@@ -18,7 +18,7 @@
   width: 180px;
 }
 
-.card-name, .card-username, .card-email, .card-phone, .card-website{
+.card-name, .card-username, .card-email, .card-phone, .card-website, .card-general{
   padding: 2px;
   margin: 0;
 }

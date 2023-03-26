@@ -14,8 +14,7 @@ export default class FullnameInput extends React.Component<IFullnameProps> {
     return (
       <ErrorMessageWrapper message={message}>
         <label>
-          Enter full name:
-          <input type="text" placeholder="Somebody Someone" ref={localRef} />
+          Enter full name: <input type="text" placeholder="Somebody Someone" ref={localRef} />
         </label>
       </ErrorMessageWrapper>
     );

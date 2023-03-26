@@ -14,12 +14,12 @@ export default class Select extends React.Component<ISelectProps> {
     return (
       <ErrorMessageWrapper message={selectErrMsg}>
         <label>
-          Choose an option:
+          Choose a country:{' '}
           <select ref={localRef}>
-            <option value="">--Please choose an option--</option>
-            <option value="option-1">Option 1</option>
-            <option value="option-2">Option 2</option>
-            <option value="option-3">Option 3</option>
+            <option value="">--Available options--</option>
+            <option value="option-1">Russia</option>
+            <option value="option-2">Belarus</option>
+            <option value="option-3">Somewhere else</option>
           </select>
         </label>
       </ErrorMessageWrapper>

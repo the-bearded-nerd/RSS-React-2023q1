@@ -14,8 +14,7 @@ export default class DateInput extends React.Component<IDateInputProps> {
     return (
       <ErrorMessageWrapper message={dateErrMsg}>
         <label>
-          Birthday:
-          <input type="date" name="date-input" ref={localRef} />
+          Birthday: <input type="date" name="date-input" ref={localRef} />
         </label>
       </ErrorMessageWrapper>
     );

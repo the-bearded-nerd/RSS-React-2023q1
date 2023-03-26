@@ -1,16 +1,17 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import validateForm from '../../utils/validateFrom';
-import FullnameInput from '../../components/fullnameInput/fullnameInput';
-import DateInput from '../../components/dateInput/dateInput';
-import Select from '../../components/select/select';
-import GenderPicker from '../../components/genderPicker/genderPicker';
-import FileInput from '../../components/fileInput/fileInput';
-import ConsentInput from '../../components/consentInput/consentInput';
+import FullnameInput from '../fullnameInput/fullnameInput';
+import DateInput from '../dateInput/dateInput';
+import Select from '../select/select';
+import GenderPicker from '../genderPicker/genderPicker';
+import FileInput from '../fileInput/fileInput';
+import ConsentInput from '../consentInput/consentInput';
+import { IFormCard } from '../../components/form-card/form-card';
+import './form.styles.css';
 
 interface IFormPageProps {
-  changeTitle(): void;
+  addCard(card: IFormCard): void;
 }
 
 interface IFormPageState {
@@ -46,6 +47,8 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
 
   checkboxRef = React.createRef<HTMLInputElement>();
 
+  formRef = React.createRef<HTMLFormElement>();
+
   constructor(props: IFormPageProps) {
     super(props);
     this.state = INITIAL_STATE;
@@ -65,6 +68,17 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
     };
     const validateResults = validateForm(validationData);
     this.setState(validateResults.errorMsgs);
+    if (validateResults.valid) {
+      const cardData = {
+        name: validationData.text!,
+        date: validationData.date!,
+        imgURL: URL.createObjectURL(validationData.files![0])!,
+        option: validationData.selectValue!,
+        gender: validationData.female ? 'female' : 'male',
+      };
+      this.props.addCard(cardData);
+      this.formRef.current?.reset();
+    }
   }
 
   render() {
@@ -73,7 +87,7 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
     return (
       <div className="form-container">
         <h2>This is the form page</h2>
-        <form className="form" onSubmit={this.onSubmit}>
+        <form className="form" onSubmit={this.onSubmit} ref={this.formRef}>
           <FullnameInput localRef={this.textRef} message={textErrMsg} />
           <DateInput localRef={this.dateRef} dateErrMsg={dateErrMsg} />
           <Select localRef={this.selectRef} selectErrMsg={selectErrMsg} />
@@ -84,7 +98,7 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
           />
           <FileInput localRef={this.fileRef} fileErrMsg={fileErrMsg} />
           <ConsentInput localRef={this.checkboxRef} checkboxErrMsg={checkboxErrMsg} />
-          <input type="submit" value="Submit" />
+          <input className="btn-submit" type="submit" value="Submit" />
         </form>
       </div>
     );
