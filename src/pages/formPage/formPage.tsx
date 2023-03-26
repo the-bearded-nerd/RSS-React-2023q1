@@ -29,7 +29,10 @@ export default class FormPage extends React.Component<IFormPageProps, IFormPageS
   addCard(card: IFormCard) {
     const { cards } = this.state;
     this.setState({ cards: [...cards, { ...card, id: Date.now() }] });
-    toast('Data has been saved');
+    toast('Data has been saved', {
+      position: 'top-center',
+      autoClose: 3000,
+    });
   }
 
   render() {

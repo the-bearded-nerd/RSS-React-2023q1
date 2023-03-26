@@ -16,9 +16,9 @@ export default class Select extends React.Component<ISelectProps> {
           Choose a country:{' '}
           <select ref={localRef}>
             <option value="">--Available options--</option>
-            <option value="option-1">Russia</option>
-            <option value="option-2">Belarus</option>
-            <option value="option-3">Somewhere else</option>
+            <option value="Russia">Russia</option>
+            <option value="Belarus">Belarus</option>
+            <option value="Somewhere else">Somewhere else</option>
           </select>
         </label>
       </ErrorMessageWrapper>
