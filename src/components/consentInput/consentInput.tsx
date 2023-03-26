@@ -4,7 +4,7 @@ import React from 'react';
 import ErrorMessageWrapper from '../error-message-wrapper/error-message-wrapper';
 import './consentInput.styles.css';
 
-interface IConsetInputProps {
+export interface IConsetInputProps {
   localRef: React.RefObject<HTMLInputElement>;
   checkboxErrMsg: string;
 }

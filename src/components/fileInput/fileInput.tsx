@@ -13,7 +13,7 @@ export default class FileInput extends React.Component<IFileInputProps> {
     return (
       <ErrorMessageWrapper message={fileErrMsg}>
         <label htmlFor="file-input">
-          Add picture <input type="file" name="file-input" id="date-input" ref={localRef} />
+          Add picture <input type="file" name="file-input" id="file-input" ref={localRef} />
         </label>
       </ErrorMessageWrapper>
     );
