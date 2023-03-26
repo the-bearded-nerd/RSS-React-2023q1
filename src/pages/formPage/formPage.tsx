@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Form from '../../components/form/form';
 import { IFormCard } from '../../components/form-card/form-card';
@@ -27,7 +29,7 @@ export default class FormPage extends React.Component<IFormPageProps, IFormPageS
   addCard(card: IFormCard) {
     const { cards } = this.state;
     this.setState({ cards: [...cards, { ...card, id: Date.now() }] });
-    alert('data has been saved');
+    toast('Data has been saved');
   }
 
   render() {
@@ -36,6 +38,7 @@ export default class FormPage extends React.Component<IFormPageProps, IFormPageS
       <main>
         <Form addCard={this.addCard} />
         <FormCardList cards={cards} />
+        <ToastContainer />
       </main>
     );
   }
