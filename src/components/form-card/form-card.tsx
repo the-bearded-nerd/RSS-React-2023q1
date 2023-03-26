@@ -6,6 +6,7 @@ export interface IFormCard {
   imgURL: string;
   gender: string;
   option: string;
+  id?: number;
 }
 
 export default class FormCard extends React.Component<IFormCard> {

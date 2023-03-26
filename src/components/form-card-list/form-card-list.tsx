@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormCard, { IFormCard } from '../../components/form-card/form-card';
+import FormCard, { IFormCard } from '../form-card/form-card';
 
 interface IFormCardListProps {
   cards: IFormCard[];
@@ -11,9 +11,9 @@ export default class FormCardList extends React.Component<IFormCardListProps> {
     const { cards } = this.props;
     return (
       <div className="card-list">
-        {cards.map((card, index) => (
+        {cards.map((card) => (
           <FormCard
-            key={index}
+            key={card.id}
             name={card.name}
             date={card.date}
             gender={card.gender}

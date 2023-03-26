@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Form from '../../components/form/form';
-import FormCard, { IFormCard } from '../../components/form-card/form-card';
+import { IFormCard } from '../../components/form-card/form-card';
 import FormCardList from '../../components/form-card-list/form-card-list';
 
 interface IFormPageProps {
@@ -25,7 +25,9 @@ export default class FormPage extends React.Component<IFormPageProps, IFormPageS
   }
 
   addCard(card: IFormCard) {
-    this.setState({ cards: [...this.state.cards, card] }, () => alert('data has been saved'));
+    const { cards } = this.state;
+    this.setState({ cards: [...cards, { ...card, id: Date.now() }] });
+    alert('data has been saved');
   }
 
   render() {

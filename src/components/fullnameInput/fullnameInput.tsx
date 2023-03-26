@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import ErrorMessageWrapper from '../error-message-wrapper/error-message-wrapper';
@@ -13,8 +12,9 @@ export default class FullnameInput extends React.Component<IFullnameProps> {
     const { localRef, message } = this.props;
     return (
       <ErrorMessageWrapper message={message}>
-        <label>
-          Enter full name: <input type="text" placeholder="Somebody Someone" ref={localRef} />
+        <label htmlFor="name-input">
+          Enter full name:{' '}
+          <input type="text" placeholder="Somebody Someone" ref={localRef} name="name-input" />
         </label>
       </ErrorMessageWrapper>
     );

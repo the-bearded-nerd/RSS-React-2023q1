@@ -7,7 +7,7 @@ import Select from '../select/select';
 import GenderPicker from '../genderPicker/genderPicker';
 import FileInput from '../fileInput/fileInput';
 import ConsentInput from '../consentInput/consentInput';
-import { IFormCard } from '../../components/form-card/form-card';
+import { IFormCard } from '../form-card/form-card';
 import './form.styles.css';
 
 interface IFormPageProps {
@@ -76,7 +76,8 @@ export default class Form extends React.Component<IFormPageProps, IFormPageState
         option: validationData.selectValue!,
         gender: validationData.female ? 'female' : 'male',
       };
-      this.props.addCard(cardData);
+      const { addCard } = this.props;
+      addCard(cardData);
       this.formRef.current?.reset();
     }
   }

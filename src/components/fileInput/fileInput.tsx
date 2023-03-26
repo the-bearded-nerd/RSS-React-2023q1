@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import ErrorMessageWrapper from '../error-message-wrapper/error-message-wrapper';
@@ -13,8 +12,9 @@ export default class FileInput extends React.Component<IFileInputProps> {
     const { fileErrMsg, localRef } = this.props;
     return (
       <ErrorMessageWrapper message={fileErrMsg}>
-        <label>Add picture</label>
-        <input type="file" ref={localRef} />
+        <label htmlFor="file-input">
+          Add picture <input type="file" name="file-input" id="date-input" ref={localRef} />
+        </label>
       </ErrorMessageWrapper>
     );
   }
