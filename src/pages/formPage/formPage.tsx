@@ -6,24 +6,15 @@ import Form from '../../components/form/form';
 import { IFormCard } from '../../components/form-card/form-card';
 import FormCardList from '../../components/form-card-list/form-card-list';
 
-interface IFormPageProps {
-  changeTitle(): void;
-}
-
 interface IFormPageState {
   cards: IFormCard[];
 }
 
-export default class FormPage extends React.Component<IFormPageProps, IFormPageState> {
-  constructor(props: IFormPageProps) {
+export default class FormPage extends React.Component<unknown, IFormPageState> {
+  constructor(props: unknown) {
     super(props);
     this.state = { cards: [] };
     this.addCard = this.addCard.bind(this);
-  }
-
-  componentDidMount(): void {
-    const { changeTitle } = this.props;
-    changeTitle();
   }
 
   addCard(card: IFormCard) {

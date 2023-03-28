@@ -6,16 +6,7 @@ import userData from '../../usersData.json';
 
 import './mainPage.styles.css';
 
-interface IMainPage {
-  changeTitle(): void;
-}
-
-export default class MainPage extends React.Component<IMainPage, never> {
-  componentDidMount(): void {
-    const { changeTitle } = this.props;
-    changeTitle();
-  }
-
+export default class MainPage extends React.Component {
   render() {
     return (
       <div className="mainpage-containter">
