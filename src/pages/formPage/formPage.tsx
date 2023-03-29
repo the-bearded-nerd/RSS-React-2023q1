@@ -2,7 +2,6 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Form from '../../components/form/form';
 import { IFormCard } from '../../components/form-card/form-card';
 import FormCardList from '../../components/form-card-list/form-card-list';
 import FormWithHooks from '../../components/form-with-hooks/form-with-hooks';
