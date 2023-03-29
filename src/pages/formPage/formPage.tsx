@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,6 +17,7 @@ export default function FormPage() {
   };
   return (
     <main>
+      <h2>Form page content</h2>
       <FormWithHooks addCard={addCard} />
       <FormCardList cards={cards} />
       <ToastContainer />

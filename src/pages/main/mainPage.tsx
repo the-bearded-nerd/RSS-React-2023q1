@@ -1,5 +1,3 @@
-import React from 'react';
-
 import SearchBar from '../../components/searchBar/searchBar';
 import CardList from '../../components/card-list/card-list';
 import userData from '../../usersData.json';
