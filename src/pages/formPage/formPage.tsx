@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Form from '../../components/form/form';
 import { IFormCard } from '../../components/form-card/form-card';
 import FormCardList from '../../components/form-card-list/form-card-list';
+import FormWithHooks from '../../components/form-with-hooks/form-with-hooks';
 
 interface IFormPageState {
   cards: IFormCard[];
@@ -32,6 +33,7 @@ export default class FormPage extends React.Component<unknown, IFormPageState> {
       <main>
         <Form addCard={this.addCard} />
         <FormCardList cards={cards} />
+        <FormWithHooks addCard={this.addCard} />
         <ToastContainer />
       </main>
     );
