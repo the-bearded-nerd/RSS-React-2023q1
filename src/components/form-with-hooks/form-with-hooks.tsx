@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { IFormCard } from '../form-card/form-card';
+import './form-with-hooks.styles.css';
 
 interface IFormData {
   fullname: string;
@@ -38,8 +39,9 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="name-input">
+        Enter full name:{' '}
         <input
           {...register('fullname', {
             required: 'Must enter name',
@@ -49,12 +51,16 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
             },
           })}
           placeholder="Somebody Someone"
+          id="name-input"
         />
       </label>
+      <p className="alert-text">{errors.fullname?.message}</p>
+      <label htmlFor="date-input">
+        Birthday:{' '}
+        <input type="date" {...register('date', { required: 'Must pick date' })} id="date-input" />
+      </label>
 
-      <p>{errors.fullname?.message}</p>
-      <input type="date" {...register('date', { required: 'Must pick date' })} />
-      <p>{errors.date?.message}</p>
+      <p className="alert-text">{errors.date?.message}</p>
       <label>
         Choose a country:{' '}
         <select
@@ -68,7 +74,7 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
           <option value="Somewhere else">Somewhere else</option>
         </select>
       </label>
-      <p>{errors.country?.message}</p>
+      <p className="alert-text">{errors.country?.message}</p>
       <p>Pick gender:</p>
       <div className="switch-field">
         <input
@@ -83,8 +89,7 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
         <input type="radio" id="gender-female" {...register('gender')} value="female" />
         <label htmlFor="gender-female">Female</label>
       </div>
-      <p>{errors.gender?.message}</p>
-
+      <p className="alert-text">{errors.gender?.message}</p>
       <label htmlFor="file-input">
         Add picture{' '}
         <input
@@ -99,13 +104,13 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
           })}
         />
       </label>
-      <p>{errors.file?.message}</p>
+      <p className="alert-text">{errors.file?.message}</p>
       <label className="label-consent">
         I consent to my personal data:
         <input type="checkbox" {...register('consent', { required: 'Must consent' })} />
       </label>
-      <p>{errors.consent?.message}</p>
-      <input type="submit" value="Submit" />
+      <p className="alert-text">{errors.consent?.message}</p>
+      <input className="btn-submit" type="submit" value="Submit" />
     </form>
   );
 }

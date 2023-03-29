@@ -31,9 +31,8 @@ export default class FormPage extends React.Component<unknown, IFormPageState> {
     const { cards } = this.state;
     return (
       <main>
-        <Form addCard={this.addCard} />
-        <FormCardList cards={cards} />
         <FormWithHooks addCard={this.addCard} />
+        <FormCardList cards={cards} />
         <ToastContainer />
       </main>
     );
