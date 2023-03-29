@@ -17,14 +17,12 @@ export default function SearchBar() {
     if (savedSearchInput) setSearchInput(savedSearchInput);
     return () => {
       if (searchRef.current) localStorage.setItem('savedSearchString', searchRef.current);
-      console.log('unmount', searchInput);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
-    console.log('a');
   };
 
   return (
