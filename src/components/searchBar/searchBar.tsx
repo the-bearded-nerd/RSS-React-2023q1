@@ -1,41 +1,29 @@
-import { useState, useEffect, useRef } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-};
+interface ISearchData {
+  searchInput: string;
+}
 
 export default function SearchBar() {
-  const [searchInput, setSearchInput] = useState('');
-  const searchRef = useRef<string>();
-
-  useEffect(() => {
-    searchRef.current = searchInput;
-  }, [searchInput]);
+  const { register, handleSubmit, getValues, setValue } = useForm<ISearchData>();
 
   useEffect(() => {
     const savedSearchInput = localStorage.getItem('savedSearchString');
-    if (savedSearchInput) setSearchInput(savedSearchInput);
+    if (savedSearchInput) setValue('searchInput', savedSearchInput);
     return () => {
-      if (searchRef.current) localStorage.setItem('savedSearchString', searchRef.current);
+      if (getValues('searchInput'))
+        localStorage.setItem('savedSearchString', getValues('searchInput'));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
   return (
     <div className="search-bar">
-      <form className="form" onSubmit={onSubmit}>
+      <form className="form" onSubmit={handleSubmit(() => {})}>
         <div className="field">
-          <input
-            type="text"
-            id="search"
-            placeholder="Start search.."
-            value={searchInput}
-            onChange={onInputChange}
-          />
+          <input {...register('searchInput')} placeholder="Start search..." />
           <input type="submit" value="Search" />
         </div>
       </form>
