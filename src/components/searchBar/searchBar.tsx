@@ -1,4 +1,3 @@
-/*  */
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -13,8 +12,7 @@ export default function SearchBar() {
     const savedSearchInput = localStorage.getItem('savedSearchString');
     if (savedSearchInput) setValue('searchInput', savedSearchInput);
     return () => {
-      if (getValues('searchInput'))
-        localStorage.setItem('savedSearchString', getValues('searchInput'));
+      localStorage.setItem('savedSearchString', getValues('searchInput'));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

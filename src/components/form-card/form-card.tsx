@@ -9,7 +9,7 @@ export interface IFormCard {
 
 export default function FormCard({ name, date, imgURL, gender, option }: IFormCard) {
   return (
-    <div className="card">
+    <div className="card" role="listitem">
       <img className="card-img" src={imgURL} alt="" />
       <p className="card-name">{name}</p>
       <p className="card-general">{date}</p>
