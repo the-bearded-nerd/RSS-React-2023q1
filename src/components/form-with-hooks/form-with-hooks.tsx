@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { IFormCard } from '../form-card/form-card';

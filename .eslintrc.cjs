@@ -40,5 +40,6 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'jsx-a11y/label-has-associated-control': 'off',
     'react/prefer-stateless-function': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
