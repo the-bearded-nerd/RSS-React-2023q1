@@ -32,6 +32,7 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
       imgURL: URL.createObjectURL(data.file[0]),
       gender: data.gender,
       option: data.country,
+      id: Date.now(),
     };
     addCard(newCardData);
     reset();
