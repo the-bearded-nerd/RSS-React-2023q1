@@ -1,53 +1,30 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-interface ISearchBarState {
-  searchString: string;
+interface ISearchData {
+  searchInput: string;
 }
 
-const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-};
+export default function SearchBar() {
+  const { register, handleSubmit, getValues, setValue } = useForm<ISearchData>();
 
-export default class SearchBar extends React.Component<unknown, ISearchBarState> {
-  constructor(props: unknown) {
-    super(props);
-    const savedSearchString = localStorage.getItem('savedSearchString');
-    this.state = { searchString: savedSearchString || '' };
-    this.saveSearchString = this.saveSearchString.bind(this);
-    window.addEventListener('beforeunload', this.saveSearchString);
-  }
+  useEffect(() => {
+    const savedSearchInput = localStorage.getItem('savedSearchString');
+    if (savedSearchInput) setValue('searchInput', savedSearchInput);
+    return () => {
+      localStorage.setItem('savedSearchString', getValues('searchInput'));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  componentWillUnmount(): void {
-    this.saveSearchString();
-    window.removeEventListener('beforeunload', this.saveSearchString);
-  }
-
-  onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchString: event.target.value });
-  };
-
-  saveSearchString() {
-    const { searchString } = this.state;
-    localStorage.setItem('savedSearchString', searchString);
-  }
-
-  render() {
-    const { searchString } = this.state;
-    return (
-      <div className="search-bar">
-        <form className="form" onSubmit={onSubmit}>
-          <div className="field">
-            <input
-              type="text"
-              id="search"
-              placeholder="Start search.."
-              value={searchString}
-              onChange={this.onInputChange}
-            />
-            <input type="submit" value="Search" />
-          </div>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="search-bar">
+      <form className="form" onSubmit={handleSubmit(() => {})}>
+        <div className="field">
+          <input {...register('searchInput')} placeholder="Start search..." />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+    </div>
+  );
 }
