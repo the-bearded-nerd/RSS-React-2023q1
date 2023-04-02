@@ -1,6 +1,5 @@
 import { describe, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import FormWithHooks from './form-with-hooks';
 
 describe('FormWithHooks', () => {
