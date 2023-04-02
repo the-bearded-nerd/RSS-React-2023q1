@@ -39,7 +39,7 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form aria-label="form" className="form" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="name-input">
         Enter full name:{' '}
         <input
@@ -54,13 +54,14 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
           id="name-input"
         />
       </label>
-      <p className="alert-text">{errors.fullname?.message}</p>
+      {errors.fullname?.message && <p className="alert-text">{errors.fullname?.message}</p>}
+
       <label htmlFor="date-input">
         Birthday:{' '}
         <input type="date" {...register('date', { required: 'Must pick date' })} id="date-input" />
       </label>
+      {errors.date?.message && <p className="alert-text">{errors.date?.message}</p>}
 
-      <p className="alert-text">{errors.date?.message}</p>
       <label>
         Choose a country:{' '}
         <select
@@ -74,7 +75,8 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
           <option value="Somewhere else">Somewhere else</option>
         </select>
       </label>
-      <p className="alert-text">{errors.country?.message}</p>
+      {errors.country?.message && <p className="alert-text">{errors.country?.message}</p>}
+
       <p>Pick gender:</p>
       <div className="switch-field">
         <input
@@ -89,7 +91,8 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
         <input type="radio" id="gender-female" {...register('gender')} value="female" />
         <label htmlFor="gender-female">Female</label>
       </div>
-      <p className="alert-text">{errors.gender?.message}</p>
+      {errors.gender?.message && <p className="alert-text">{errors.gender?.message}</p>}
+
       <label htmlFor="file-input">
         Add picture{' '}
         <input
@@ -104,12 +107,14 @@ export default function FormWithHooks(props: IFormWithHooksProps) {
           })}
         />
       </label>
-      <p className="alert-text">{errors.file?.message}</p>
+      {errors.file?.message && <p className="alert-text">{errors.file?.message}</p>}
+
       <label className="label-consent">
         I consent to my personal data:
         <input type="checkbox" {...register('consent', { required: 'Must consent' })} />
       </label>
-      <p className="alert-text">{errors.consent?.message}</p>
+      {errors.consent?.message && <p className="alert-text">{errors.consent?.message}</p>}
+
       <input className="btn-submit" type="submit" value="Submit" />
     </form>
   );
