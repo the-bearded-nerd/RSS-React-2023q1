@@ -5,7 +5,12 @@ interface ISearchData {
   searchInput: string;
 }
 
-export default function SearchBar() {
+interface ISearchProps {
+  onSubmit: (textToSearch: string) => void;
+}
+
+export default function SearchBar(props: ISearchProps) {
+  const { onSubmit } = props;
   const { register, handleSubmit, getValues, setValue } = useForm<ISearchData>();
 
   useEffect(() => {
@@ -19,7 +24,12 @@ export default function SearchBar() {
 
   return (
     <div className="search-bar">
-      <form className="form" onSubmit={handleSubmit(() => {})}>
+      <form
+        className="form"
+        onSubmit={handleSubmit(() => {
+          onSubmit(getValues('searchInput'));
+        })}
+      >
         <div className="field">
           <input {...register('searchInput')} placeholder="Start search..." />
           <input type="submit" value="Search" />

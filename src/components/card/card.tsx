@@ -1,14 +1,12 @@
-import getUserImg from '../../utils/userpic';
-
 import './card.styles.css';
 
 export interface ICard {
   id: number;
   name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
+  status: string;
+  gender: string;
+  image: string;
+  species: string;
 }
 
 export interface ICardProps {
@@ -16,22 +14,14 @@ export interface ICardProps {
 }
 
 export function Card({ cardData }: ICardProps) {
-  const { username, name, email, phone, website } = cardData;
-  const userImg = getUserImg(username);
+  const { name, status, gender, image, species } = cardData;
   return (
     <div className="card" role="listitem">
-      <img className="card-img" src={userImg} alt={`${username}`} />
+      <img className="card-img" src={image} alt={`${name}`} />
       <p className="card-name">{name}</p>
-      <p className="card-username">{username}</p>
-      <a href={`mailto:${email}`} className="card-email">
-        {email}
-      </a>
-      <a href={`tel:${phone}`} className="card-phone">
-        {phone}
-      </a>
-      <a href={`${website}`} className="card-website">
-        {website}
-      </a>
+      <p>{status}</p>
+      <p>{gender}</p>
+      <p>{species}</p>
     </div>
   );
 }
