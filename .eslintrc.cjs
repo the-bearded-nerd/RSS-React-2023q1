@@ -41,5 +41,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'react/prefer-stateless-function': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'eslint-disable-next-line jsx-a11y': 'off',
   },
 };

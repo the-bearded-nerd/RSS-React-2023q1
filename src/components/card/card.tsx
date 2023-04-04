@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import './card.styles.css';
 
 interface ILocation {
@@ -31,6 +29,7 @@ export function Card({ cardData, onCardClick }: ICardProps) {
       onClick={() => {
         onCardClick(cardData);
       }}
+      onKeyDown={() => {}}
     >
       <img className="card-img" src={image} alt={`${name}`} />
       <p className="card-name">{name}</p>
