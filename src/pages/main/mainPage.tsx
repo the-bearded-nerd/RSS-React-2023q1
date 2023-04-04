@@ -11,7 +11,7 @@ import './mainPage.styles.css';
 const BASE_URL = 'https://rickandmortyapi.com/api/character/?';
 
 export default function MainPage() {
-  const [isModalActive, setModalActive] = useState(true);
+  const [isModalActive, setModalActive] = useState(false);
   const [modalCard, setModalCard] = useState<ICard>();
   const [cards, setCards] = useState([] as ICard[]);
   const [fetchURL, setFetchURL] = useState(BASE_URL);
