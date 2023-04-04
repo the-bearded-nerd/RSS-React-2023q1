@@ -15,7 +15,10 @@ export default function SearchBar(props: ISearchProps) {
 
   useEffect(() => {
     const savedSearchInput = localStorage.getItem('savedSearchString');
-    if (savedSearchInput) setValue('searchInput', savedSearchInput);
+    if (savedSearchInput) {
+      setValue('searchInput', savedSearchInput);
+      onSubmit(savedSearchInput);
+    }
     return () => {
       localStorage.setItem('savedSearchString', getValues('searchInput'));
     };
