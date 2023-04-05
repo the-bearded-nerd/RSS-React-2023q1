@@ -55,7 +55,7 @@ export default function MainPage() {
       <SearchBar onSubmit={updateFetchURL} />
       {isLoading ? <p>Loading....</p> : <CardList userData={cards} onCardClick={onCardClick} />}
       <Modal isActive={isModalActive} onClose={closeModal}>
-        {modalCard ? <CardWithMoreInfo cardData={modalCard} /> : 'ничо'}
+        {modalCard && <CardWithMoreInfo cardURL={modalCard.url} />}
       </Modal>
     </div>
   );
