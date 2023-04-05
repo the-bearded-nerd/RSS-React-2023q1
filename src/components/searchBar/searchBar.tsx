@@ -19,20 +19,17 @@ export default function SearchBar(props: ISearchProps) {
       setValue('searchInput', savedSearchInput);
       onSubmit(savedSearchInput);
     }
-    return () => {
-      localStorage.setItem('savedSearchString', getValues('searchInput'));
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleSearchSubmit = handleSubmit(() => {
+    const searchInput = getValues('searchInput');
+    onSubmit(searchInput);
+    localStorage.setItem('savedSearchString', searchInput);
+  });
 
   return (
     <div className="search-bar">
-      <form
-        className="form"
-        onSubmit={handleSubmit(() => {
-          onSubmit(getValues('searchInput'));
-        })}
-      >
+      <form className="form" onSubmit={handleSearchSubmit}>
         <div className="field">
           <input {...register('searchInput')} placeholder="Start search..." />
           <input type="submit" value="Search" />
