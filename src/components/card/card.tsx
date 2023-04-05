@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import './card.styles.css';
 
 interface ILocation {
@@ -24,15 +22,6 @@ export interface ICardProps {
 }
 
 export function Card({ cardData, onCardClick }: ICardProps) {
-  useEffect(() => {
-    const fetchCardData = async () => {
-      const response = await fetch(cardData.url);
-      const responseJson = await response.json();
-      console.log(responseJson);
-      console.log('q');
-    };
-  }, []);
-
   const { name, status, gender, image, species } = cardData;
   return (
     <div
@@ -41,7 +30,6 @@ export function Card({ cardData, onCardClick }: ICardProps) {
       onClick={() => {
         onCardClick(cardData);
       }}
-      onKeyDown={() => {}}
     >
       <img className="card-img" src={image} alt={`${name}`} />
       <p className="card-name">{name}</p>
