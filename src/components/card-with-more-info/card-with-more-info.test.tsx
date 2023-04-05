@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import CardWithMoreInfo from './card-with-more-info';
 import { TEST_CARD } from '../../mocks/data';
-import { server } from '../../mocks/server';
+import server from '../../mocks/server';
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
