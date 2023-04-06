@@ -14,6 +14,6 @@ describe('CardList', () => {
       </MemoryRouter>
     );
     const cards = screen.getAllByRole('listitem');
-    expect(cards.length).toBe(2);
+    expect(cards.length).toBe(TEST_CARD_LIST.length);
   });
 });

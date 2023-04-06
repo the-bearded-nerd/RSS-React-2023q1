@@ -10,7 +10,7 @@ interface IModalProps {
 
 export default function Modal({ isActive, onClose, children }: IModalProps) {
   return (
-    <div className={isActive ? 'modal active' : 'modal'} onClick={() => onClose()}>
+    <div className={isActive ? 'modal active' : 'modal'} onClick={() => onClose()} role="dialog">
       <div
         className={isActive ? 'modal-content active' : 'modal-content'}
         onClick={(e) => {
