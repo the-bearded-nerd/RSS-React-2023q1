@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-import { TEST_CARD, TEST_CARD_LIST } from './data';
+import { TEST_CARD_LIST } from './data';
 
 const handlers = [
   rest.get('https://rickandmortyapi.com/api/character/?', (req, res, ctx) => {
