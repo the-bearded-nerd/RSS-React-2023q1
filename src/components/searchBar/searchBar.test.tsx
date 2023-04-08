@@ -9,7 +9,7 @@ describe('SearchBar', () => {
     localStorage.setItem('savedSearchString', 'blablabla');
     render(
       <MemoryRouter>
-        <SearchBar />
+        <SearchBar onSubmit={() => {}} />
       </MemoryRouter>
     );
     const searchText = screen.getByRole('textbox');
@@ -19,7 +19,7 @@ describe('SearchBar', () => {
     localStorage.removeItem('savedSearchString');
     render(
       <MemoryRouter>
-        <SearchBar />
+        <SearchBar onSubmit={() => {}} />
       </MemoryRouter>
     );
     const searchText = screen.getByRole('textbox');

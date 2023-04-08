@@ -1,25 +1,27 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
+  parser: '@typescript-eslint/parser',
   extends: [
-    'airbnb',
-    'airbnb/hooks',
-    'airbnb-typescript',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
-  overrides: [],
-  parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    es6: true,
+    jest: true,
+    node: true,
+  },
+  root: true,
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    tsconfigRootDir: __dirname,
-    project: 'tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'react', 'prettier', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -34,12 +36,15 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/no-var-reqiures': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'jsx-a11y/label-has-associated-control': 'off',
-    'react/prefer-stateless-function': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+  },
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
   },
 };

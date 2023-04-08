@@ -1,37 +1,43 @@
-import getUserImg from '../../utils/userpic';
-
 import './card.styles.css';
+
+interface ILocation {
+  name: string;
+}
 
 export interface ICard {
   id: number;
   name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
+  status: string;
+  gender: string;
+  image: string;
+  species: string;
+  location: ILocation;
+  origin: ILocation;
+  url: string;
 }
 
 export interface ICardProps {
   cardData: ICard;
+  onCardClick: (card: ICard) => void;
 }
 
-export function Card({ cardData }: ICardProps) {
-  const { username, name, email, phone, website } = cardData;
-  const userImg = getUserImg(username);
+export function Card({ cardData, onCardClick }: ICardProps) {
+  const { name, status, gender, image, species } = cardData;
   return (
-    <div className="card" role="listitem">
-      <img className="card-img" src={userImg} alt={`${username}`} />
+    <div
+      className="card"
+      role="listitem"
+      onClick={() => {
+        onCardClick(cardData);
+      }}
+    >
+      <img className="card-img" src={image} alt={`${name}`} />
       <p className="card-name">{name}</p>
-      <p className="card-username">{username}</p>
-      <a href={`mailto:${email}`} className="card-email">
-        {email}
-      </a>
-      <a href={`tel:${phone}`} className="card-phone">
-        {phone}
-      </a>
-      <a href={`${website}`} className="card-website">
-        {website}
-      </a>
+      <div className="card-info">
+        <p>Status: {status}</p>
+        <p>Gender: {gender}</p>
+        <p>Species: {species}</p>
+      </div>
     </div>
   );
 }
