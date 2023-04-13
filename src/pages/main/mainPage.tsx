@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import SearchBar from '../../components/searchBar/searchBar';
 import CardList from '../../components/card-list/card-list';
@@ -15,7 +15,7 @@ export default function MainPage() {
   const searchInput = useAppSelector(selectSearchInput);
   const [isModalActive, setModalActive] = useState(false);
   const [modalCard, setModalCard] = useState<ICard>();
-  const { data, isFetching } = useGetCardsBySearchQueryQuery(searchInput);
+  const { data, isFetching, isError } = useGetCardsBySearchQueryQuery(searchInput);
 
   const openModal = () => {
     setModalActive(true);
@@ -37,7 +37,7 @@ export default function MainPage() {
       {isFetching ? (
         <p>Loading....</p>
       ) : (
-        <CardList userData={data!.results} onCardClick={onCardClick} />
+        <CardList userData={data && !isError ? data.results : []} onCardClick={onCardClick} />
       )}
       <Modal isActive={isModalActive} onClose={closeModal}>
         {modalCard && <CardWithMoreInfo cardId={modalCard.id} />}

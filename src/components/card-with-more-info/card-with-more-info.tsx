@@ -1,7 +1,3 @@
-import { useEffect, useState } from 'react';
-
-import { ICard } from '../card/card';
-
 import './card-with-more-info.styles.css';
 
 interface ICardWithMoreInfoProps {
