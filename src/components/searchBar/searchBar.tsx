@@ -8,27 +8,17 @@ interface ISearchData {
   searchInput: string;
 }
 
-interface ISearchProps {
-  onSubmit: (textToSearch: string) => void;
-}
-
-export default function SearchBar(props: ISearchProps) {
+export default function SearchBar() {
   const savedSearchInput = useAppSelector(selectSearchInput);
   const dispatch = useAppDispatch();
-  const { onSubmit } = props;
   const { register, handleSubmit, getValues, setValue } = useForm<ISearchData>();
 
   useEffect(() => {
-    if (savedSearchInput) {
-      setValue('searchInput', savedSearchInput);
-      onSubmit(savedSearchInput);
-    }
+    setValue('searchInput', savedSearchInput);
   }, []);
 
   const handleSearchSubmit = handleSubmit(() => {
-    const searchInput = getValues('searchInput');
-    onSubmit(searchInput);
-    dispatch(saveSearchInput(searchInput));
+    dispatch(saveSearchInput(getValues('searchInput')));
   });
 
   return (

@@ -5,21 +5,22 @@ import CardList from '../../components/card-list/card-list';
 import { ICard } from '../../components/card/card';
 import CardWithMoreInfo from '../../components/card-with-more-info/card-with-more-info';
 import Modal from '../../components/modal/modal';
+import { useAppSelector } from '../../app/hooks';
+import { selectSearchInput } from '../../features/searchInput/searchInput';
+import { useGetCardsBySearchQueryQuery } from '../../services/rickAndMorty';
 
 import './mainPage.styles.css';
 
-const BASE_URL = 'https://rickandmortyapi.com/api/character/?';
-
 export default function MainPage() {
+  const searchInput = useAppSelector(selectSearchInput);
   const [isModalActive, setModalActive] = useState(false);
   const [modalCard, setModalCard] = useState<ICard>();
-  const [cards, setCards] = useState([] as ICard[]);
-  const [fetchURL, setFetchURL] = useState(BASE_URL);
-  const [isLoading, setIsLoading] = useState(false);
+  const { data, isFetching } = useGetCardsBySearchQueryQuery(searchInput);
 
   const openModal = () => {
     setModalActive(true);
   };
+
   const closeModal = () => {
     setModalActive(false);
   };
@@ -29,33 +30,17 @@ export default function MainPage() {
     openModal();
   };
 
-  const updateFetchURL = (textToSearch: string) => {
-    const newURL =
-      BASE_URL +
-      new URLSearchParams({
-        name: textToSearch,
-      });
-    setFetchURL(newURL);
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const response = await fetch(fetchURL);
-      const json = await response.json();
-      setCards(json.results || []);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [fetchURL]);
-
   return (
     <div className="mainpage-containter">
       <h2>Main page content</h2>
-      <SearchBar onSubmit={updateFetchURL} />
-      {isLoading ? <p>Loading....</p> : <CardList userData={cards} onCardClick={onCardClick} />}
+      <SearchBar />
+      {isFetching ? (
+        <p>Loading....</p>
+      ) : (
+        <CardList userData={data!.results} onCardClick={onCardClick} />
+      )}
       <Modal isActive={isModalActive} onClose={closeModal}>
-        {modalCard && <CardWithMoreInfo cardURL={modalCard.url} />}
+        {modalCard && <CardWithMoreInfo cardId={modalCard.id} />}
       </Modal>
     </div>
   );
