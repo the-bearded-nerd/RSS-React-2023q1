@@ -10,8 +10,9 @@ export default function CardWithMoreInfo({ cardId }: ICardWithMoreInfoProps) {
   const { data, isFetching } = useGetCardByIdQuery(cardId);
 
   if (isFetching) return <p>Loading.....</p>;
-
-  if (!data) return <p>No data found =( </p>;
+  else if (!data) {
+    return <p>No data found =( </p>;
+  }
 
   const { name, status, gender, image, species, location, origin } = data;
   return (

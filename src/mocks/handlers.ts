@@ -1,9 +1,15 @@
 import { rest } from 'msw';
+import { fetch, Headers, Request, Response } from 'cross-fetch';
+
+global.fetch = fetch;
+global.Headers = Headers;
+global.Request = Request;
+global.Response = Response;
 
 import { TEST_CARD_LIST } from './data';
 
 const handlers = [
-  rest.get('https://rickandmortyapi.com/api/character/?', (req, res, ctx) => {
+  rest.get('https://rickandmortyapi.com/api/character', (req, res, ctx) => {
     const name = req.url.searchParams.get('name') || '';
     return res(
       ctx.status(200),
