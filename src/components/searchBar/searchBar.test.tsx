@@ -1,28 +1,24 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import SearchBar from './searchBar';
+import store from '../../app/store';
+import { saveSearchInput } from '../../features/searchInput/searchInput';
 
 describe('SearchBar', () => {
-  it('SearchBar loads value from localstorage', async () => {
-    localStorage.setItem('savedSearchString', 'blablabla');
+  const dispatch = store.dispatch;
+  it('SearchBar loads value from Redux store', async () => {
+    dispatch(saveSearchInput('blablabla'));
     render(
       <MemoryRouter>
-        <SearchBar onSubmit={() => {}} />
+        <Provider store={store}>
+          <SearchBar />
+        </Provider>
       </MemoryRouter>
     );
     const searchText = screen.getByRole('textbox');
     expect(searchText).toHaveValue('blablabla');
-  });
-  it('SearchBar loads without localStorage value', async () => {
-    localStorage.removeItem('savedSearchString');
-    render(
-      <MemoryRouter>
-        <SearchBar onSubmit={() => {}} />
-      </MemoryRouter>
-    );
-    const searchText = screen.getByRole('textbox');
-    expect(searchText).toHaveValue('');
   });
 });

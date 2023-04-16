@@ -1,30 +1,24 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { saveSearchInput, selectSearchInput } from '../../features/searchInput/searchInput';
+
 interface ISearchData {
   searchInput: string;
 }
 
-interface ISearchProps {
-  onSubmit: (textToSearch: string) => void;
-}
-
-export default function SearchBar(props: ISearchProps) {
-  const { onSubmit } = props;
+export default function SearchBar() {
+  const savedSearchInput = useAppSelector(selectSearchInput);
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, getValues, setValue } = useForm<ISearchData>();
 
   useEffect(() => {
-    const savedSearchInput = localStorage.getItem('savedSearchString');
-    if (savedSearchInput) {
-      setValue('searchInput', savedSearchInput);
-      onSubmit(savedSearchInput);
-    }
+    setValue('searchInput', savedSearchInput);
   }, []);
 
   const handleSearchSubmit = handleSubmit(() => {
-    const searchInput = getValues('searchInput');
-    onSubmit(searchInput);
-    localStorage.setItem('savedSearchString', searchInput);
+    dispatch(saveSearchInput(getValues('searchInput')));
   });
 
   return (

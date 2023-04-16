@@ -1,35 +1,22 @@
-import { useEffect, useState } from 'react';
-
-import { ICard } from '../card/card';
-
 import './card-with-more-info.styles.css';
 
 interface ICardWithMoreInfoProps {
-  cardURL: string;
+  cardId: number;
 }
 
-export default function CardWithMoreInfo({ cardURL }: ICardWithMoreInfoProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentCard, setCurrentCard] = useState<ICard>();
+import { useGetCardByIdQuery } from '../../services/rickAndMorty';
 
-  useEffect(() => {
-    const fetchCardData = async () => {
-      setIsLoading(true);
-      const response = await fetch(cardURL);
-      const responseJson = await response.json();
-      setCurrentCard(responseJson);
-      setIsLoading(false);
-    };
-    fetchCardData();
-  }, [cardURL]);
+export default function CardWithMoreInfo({ cardId }: ICardWithMoreInfoProps) {
+  const { data, isFetching } = useGetCardByIdQuery(cardId);
 
-  if (!currentCard || isLoading) {
-    return <p>Loading.....</p>;
+  if (isFetching) return <p>Loading.....</p>;
+  else if (!data) {
+    return <p>No data found =( </p>;
   }
-  const { name, status, gender, image, species, location, origin } = currentCard;
+
+  const { name, status, gender, image, species, location, origin } = data;
   return (
     <div className="card-wmi" role="listitem">
-      {isLoading && 'Loading....'}
       <img className="card-wmi-img" src={image} alt={`${name}`} />
       <p className="card-wmi-name">{name}</p>
       <p>Status: {status}</p>
