@@ -1,7 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
 
 import CardWithMoreInfo from './card-with-more-info';
 import store from '../../app/store';
@@ -27,16 +26,23 @@ describe('CardWithMoreInfo', () => {
 
   it('Renders card with more info', async () => {
     render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <CardWithMoreInfo cardId={test_card.id} />
-        </Provider>
-      </MemoryRouter>
+      <Provider store={store}>
+        <CardWithMoreInfo cardId={test_card.id} />
+      </Provider>
     );
 
     const name = await screen.findByText(test_card.name);
     const gender = await screen.findByText(`Gender: ${test_card.gender}`);
     expect(name).toBeInTheDocument();
     expect(gender).toBeInTheDocument();
+  });
+  it('Renders no data found when no data found', async () => {
+    render(
+      <Provider store={store}>
+        <CardWithMoreInfo cardId={0} />
+      </Provider>
+    );
+    const noDataFound = await screen.findByText(/No data found/);
+    expect(noDataFound).toBeInTheDocument();
   });
 });
