@@ -3,15 +3,17 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import CardWithMoreInfo from './card-with-more-info';
-import store from '../../app/store';
-import { TEST_CARD_LIST } from '../../mocks/data';
-import server from '../../mocks/server';
+import setupStore from 'client/app/store';
+import { TEST_CARD_LIST } from '../../../mocks/data';
+import server from '../../../mocks/server';
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
 const test_card = TEST_CARD_LIST[0];
+
+const store = setupStore();
 
 describe('CardWithMoreInfo', () => {
   it('Renders progress status', async () => {

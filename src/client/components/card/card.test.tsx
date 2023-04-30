@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { Card } from './card';
 
-import { TEST_CARD } from '../../mocks/data';
+import { TEST_CARD } from '../../../mocks/data';
 
 describe('Card', () => {
   it('Renders card with img', async () => {

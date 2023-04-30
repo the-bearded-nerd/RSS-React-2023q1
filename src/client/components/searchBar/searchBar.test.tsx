@@ -4,9 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import SearchBar from './searchBar';
-import store from '../../app/store';
+import setupStore from 'client/app/store';
 import { saveSearchInput } from '../../features/searchInput/searchInput';
 
+const store = setupStore();
 describe('SearchBar', () => {
   const dispatch = store.dispatch;
   it('SearchBar loads value from Redux store', async () => {

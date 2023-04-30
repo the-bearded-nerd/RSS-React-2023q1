@@ -7,7 +7,7 @@ import CardWithMoreInfo from '../../components/card-with-more-info/card-with-mor
 import Modal from '../../components/modal/modal';
 import { useAppSelector } from '../../app/hooks';
 import { selectSearchInput } from '../../features/searchInput/searchInput';
-import { useGetCardsBySearchQueryQuery } from '../../services/rickAndMorty';
+import { useGetCardsBySearchQueryQuery } from '../../../services/rickAndMorty';
 
 import './mainPage.styles.css';
 

@@ -3,7 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import MainPage from './mainPage';
-import store from '../../app/store';
+import setupStore from 'client/app/store';
+
+const store = setupStore();
 
 describe('MainPage', () => {
   it('Modal opens after clicking on card', async () => {

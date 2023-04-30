@@ -1,0 +1,6 @@
+    "dev": "vite",
+    "build": "eslint . --ext .ts,.tsx && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "coverage": "vitest run --coverage"

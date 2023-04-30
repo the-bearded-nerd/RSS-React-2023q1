@@ -4,7 +4,7 @@ interface ICardWithMoreInfoProps {
   cardId: number;
 }
 
-import { useGetCardByIdQuery } from '../../services/rickAndMorty';
+import { useGetCardByIdQuery } from '../../../services/rickAndMorty';
 
 export default function CardWithMoreInfo({ cardId }: ICardWithMoreInfoProps) {
   const { data, isFetching } = useGetCardByIdQuery(cardId);

@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import FormPage from './formPage';
-import store from '../../app/store';
+import setupStore from 'client/app/store';
+
+const store = setupStore();
 
 describe('FormPage', () => {
   it('Renders FormPage with h2', () => {

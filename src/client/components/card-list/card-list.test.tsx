@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { TEST_CARD_LIST } from '../../mocks/data';
+import { TEST_CARD_LIST } from '../../../mocks/data';
 
 import CardList from './card-list';
 

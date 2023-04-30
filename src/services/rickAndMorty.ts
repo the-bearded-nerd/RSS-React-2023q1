@@ -1,10 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import * as rtkQuery from '@reduxjs/toolkit/dist/query/react/index.js';
 
-import { ICard } from 'components/card/card';
+import createApi from './createApi';
+
+import { ICard } from '../client/components/card/card';
 
 interface IQueryProps {
   results: ICard[];
 }
+
+type TypeRtkQuery = typeof rtkQuery & { default?: unknown };
+const { fetchBaseQuery } = ((rtkQuery as TypeRtkQuery).default ?? rtkQuery) as typeof rtkQuery;
 
 export const rickAndMortyApi = createApi({
   reducerPath: 'rickAndMortyApi',

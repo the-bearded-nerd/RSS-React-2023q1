@@ -2,14 +2,15 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import server from './mocks/server';
+import server from '../mocks/server';
+import setupStore from './app/store';
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
 import App from './App';
-import store from './app/store';
+const store = setupStore();
 
 describe('App', () => {
   it('Renders main page by default', () => {
