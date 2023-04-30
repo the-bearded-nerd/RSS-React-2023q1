@@ -43,7 +43,7 @@ export default defineConfig({
       enabled: true,
       reporter: ['text'],
       include: ['**/*.{jsx,tsx}'],
-      exclude: [...coverageConfigDefaults.exclude, '**/main.tsx'],
+      exclude: [...coverageConfigDefaults.exclude, '**/main.tsx', 'src/server/**/*'],
     },
   },
 });

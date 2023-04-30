@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import SearchBar from './searchBar';
-import setupStore from 'client/app/store';
+import setupStore from '../../app/store';
 import { saveSearchInput } from '../../features/searchInput/searchInput';
 
 const store = setupStore();

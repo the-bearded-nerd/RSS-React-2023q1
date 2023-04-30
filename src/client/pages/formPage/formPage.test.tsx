@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import FormPage from './formPage';
-import setupStore from 'client/app/store';
+import setupStore from '../../app/store';
 
 const store = setupStore();
 

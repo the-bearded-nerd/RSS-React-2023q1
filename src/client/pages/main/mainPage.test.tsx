@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import MainPage from './mainPage';
-import setupStore from 'client/app/store';
+import setupStore from '../../app/store';
 
 const store = setupStore();
 

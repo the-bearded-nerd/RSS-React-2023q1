@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
 import CardWithMoreInfo from './card-with-more-info';
-import setupStore from 'client/app/store';
+import setupStore from '../../app/store';
 import { TEST_CARD_LIST } from '../../../mocks/data';
 import server from '../../../mocks/server';
 
