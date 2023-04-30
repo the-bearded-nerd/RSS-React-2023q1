@@ -5,12 +5,17 @@
   "type": "module",
   "scripts": {
     "start": "set \"NODE_ENV=production\" && npm run start:node",
+    "start:node": "ts-node src/server/server.ts",
     "dev": "nodemon src/server/server.ts",
     "build": "conc \"npm:build:*\"",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/server/components/ServerApp.tsx",
     "preview": "vite preview",
+    "test": "conc \"npm:test:*\"",
     "test:unit": "vitest run --coverage",
+    "test:e2e": "start-server-and-test start:node http://localhost:5173 cypress && nyc",
+    "cypress": "cypress run --e2e",
+    "nyc": "npx nyc report --reporter=text-summary",
     "lint": "eslint . --ext .ts,.tsx",
     "coverage": "vitest run --coverage"
   },
